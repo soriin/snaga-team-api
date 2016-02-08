@@ -1,12 +1,15 @@
 import Koa from 'koa';
+import router from './routes';
+import config from '../config/config';
 const app = new Koa();
 
-// response
-app.use(async (ctx) => {
-  ctx.body = 'Hello World';
-});
+app
+  .use(router.routes())
+  .use(router.allowedMethods());
 
-app.listen(3000, () => console.log('server started 3000'));
+var port = config.port || 3000;
+
+app.listen(port, () => console.log('server started ' + port));
 
 export default app
 
