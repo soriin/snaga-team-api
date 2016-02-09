@@ -2,9 +2,18 @@
  * Created by soriin on 2/8/2016.
  */
 var router = require('koa-router')();
+import User from '../app/models/user'
 
 router.param('user', function (id, ctx, next) {
-  ctx.user = "User " + id;
+  if (id) {
+    User.findById(id, function(err, user){
+      if (err) {
+        console.error("Failed to fetch user with id: " + id);
+      } else {
+        ctx.user = user;
+      }
+    });
+  }
   next();
 });
 router.param('ship', function (id, ctx, next) {

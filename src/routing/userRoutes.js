@@ -13,10 +13,6 @@ router.get('/:user', function (ctx, next) {
   ctx.body = 'GET User';
   next();
 });
-router.post('/', function (ctx, next) {
-  ctx.body = 'POST User';
-  next();
-});
 router.put('/:user', function (ctx, next) {
   ctx.body = 'PUT User';
   next();
