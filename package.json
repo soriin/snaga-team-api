@@ -26,7 +26,8 @@
   "homepage": "https://snaga.team",
   "dependencies": {
     "koa": "^2.0.0-alpha.3",
-    "koa-router": "^7.0.0"
+    "koa-router": "^7.0.0",
+    "lodash": "^4.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
