@@ -25,7 +25,16 @@ function loadRoutes() {
     var start = new Date;
     await next();
     var ms = new Date - start;
-    console.log('%s %s - %s', this.method, this.url, ms);
+    console.log('%s %s - %sms', ctx.req.method, ctx.req.url, ms);
+  });
+
+  app.use(async (ctx, next) => {
+    try {
+      await next(); // next is now a function
+    } catch (err) {
+      ctx.body = { message: err.message };
+      ctx.status = err.status || 500;
+    }
   });
 
   app
@@ -40,7 +49,7 @@ function loadRoutes() {
 }
 
 function startServer(port) {
-  app.listen(port, () => console.log('server started ' + port));
+  app.listen(port, () => console.log('server started on port ' + port));
 }
 export default app
 
